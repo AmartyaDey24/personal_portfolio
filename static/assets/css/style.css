@@ -163,6 +163,22 @@ h6 {
   font-size: 16px;
 }
 
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 140px; /* Adjust the width to your preference */
+}
+
+.social-icons a {
+  text-decoration: none;
+  margin: 2px;
+}
+
+.social-icons img {
+  width: 20px; /* Adjust the size of the icons */
+  height: 20px; /* Adjust the size of the icons */
+}
+
 .header-social-links a:hover {
   color: #34b7a7;
 }
