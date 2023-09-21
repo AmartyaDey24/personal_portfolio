@@ -3,6 +3,7 @@
 Welcome to my personal portfolio! This project showcases my skills, experiences, and projects in the field of web development. The project is still under development so you can check in your local host.
 
 ## Table of Contents
+
 - [About](#about)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
@@ -54,6 +55,7 @@ To run this project locally, follow these steps:
 7. Open your web browser and visit http://localhost:5000 to view your portfolio locally.
 
 ## Features
+
 - Responsive design for optimal viewing on various devices.
 - Resume section with my career summary and education details.
 - About section showcase a breif about myself and my respective skills.
@@ -62,3 +64,21 @@ To run this project locally, follow these steps:
 
 ## Screenshots
 
+![Homepage Screenshot](screenshots/Home.png)
+![About page Screenshot](screenshots/about1.png)
+![About - skills page Screenshot](screenshots/about2.png)
+![Resume page Screenshot](screenshots/resume.png)
+![contact form page Screenshot](screenshots/contact_form.png)
+
+## Contributing
+
+If you'd like to contribute to this project, please follow these steps:
+
+- Fork the repository.
+- Create a new branch for your feature: git checkout -b feature-name
+- Make your changes and commit them: git commit -m "Add your feature"
+- Push to the branch: git push origin feature-name
+- Create a pull request on GitHub.
+
+
+Thank you for visiting my portfolio!
