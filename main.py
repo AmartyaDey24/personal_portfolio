@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+from dates_data import Dates_data
+
 
 app = Flask(__name__)
 
@@ -8,7 +10,9 @@ def home():
 
 @app.route("/about")
 def about():
-    return render_template('about.html')
+    exp_months = Dates_data.get_exp_months()
+    age = Dates_data.get_age()
+    return render_template('about.html', exp_months = exp_months, age = age)
 
 @app.route("/resume")
 def resume():
