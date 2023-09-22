@@ -1,39 +1,38 @@
 from flask import Flask, render_template, request
 from dates_data import Dates_data
 from flask_sqlalchemy import SQLAlchemy
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
 from flask_mail import Mail, Message
+import json
+
+with open('config.json', 'r') as c:
+    params = json.load(c)["params"]
 
 app = Flask(__name__)
 
 #connecting to Xaamp Mysql through sqlalchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:@localhost/portfolio_amartya"
+app.config["SQLALCHEMY_DATABASE_URI"] = params["local_mysql_uri"]
 db = SQLAlchemy(app)
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'amartyaportfolio@gmail.com'  # Replace with your Gmail email address
-app.config['MAIL_PASSWORD'] = 'lsqw vmcy frho ebch'  # Replace with your Gmail password
+app.config['MAIL_SERVER'] = params["mail_server"]
+app.config['MAIL_PORT'] = params["mail_port"]
+app.config['MAIL_USERNAME'] = params["mail_username"]
+app.config['MAIL_PASSWORD'] = params["mail_pass"]
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 
 mail = Mail(app)
 
 
-def send_email(subject, message, sender_email):
-    msg = Message(subject=subject, sender=sender_email, recipients=['amartyadey929@gmail.com@gmail.com'])  # Replace with the recipient's email address
-    msg.body = message
+def send_email(subject, message, sender_email, name):
+    msg = Message(subject= name + ' from portfolio - ' + subject, sender=sender_email, recipients=[params["recipients_email"]])
+    message_format = f"{message}\n\nSender's Email: {sender_email}"
+    msg.body = message_format
     mail.send(msg)
 
 #class contacts help to update the contacts_form table with relevalent data
 class Contacts(db.Model):
-    '''
-    sno, name, email, subject, message, datetime
-    '''
-    __tablename__ = 'contacts_form' 
+
+    __tablename__ = params["contact_db_table"] 
 
     sno = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
@@ -52,21 +51,22 @@ class Contacts(db.Model):
 
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template('home.html', params = params)
 
 @app.route("/about")
 def about():
     exp_months = Dates_data.get_exp_months()
     age = Dates_data.get_age()
-    return render_template('about.html', exp_months = exp_months, age = age)
+    return render_template('about.html', exp_months = exp_months, age = age, params = params)
 
 @app.route("/resume")
 def resume():
-    return render_template('resume.html')
+    return render_template('resume.html', params = params)
 
 @app.route("/experiences")
 def experiences():
-    return render_template('experiences.html')
+    exp_months = Dates_data.get_exp_months()
+    return render_template('experiences.html', params = params, exp_months = exp_months)
 
 @app.route("/contact", methods = ['GET', 'POST'])
 def contact():
@@ -81,8 +81,8 @@ def contact():
         db.session.add(entry)
         db.session.commit()
     
-        send_email(subject_post, message_post, email_post)
+        send_email(subject_post, message_post, email_post, name_post)
 
-    return render_template('contact.html')
+    return render_template('contact.html', params = params)
 
 app.run(debug=True)

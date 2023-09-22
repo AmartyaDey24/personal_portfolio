@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
-<title>Amartya Dey - Contact</title>
+<title>{{params["title"]}} - Contact</title>
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top">
   <div class="container-fluid d-flex justify-content-between align-items-center">
 
-    <h1 class="logo me-auto me-lg-0"><a href="index">Amartya Dey</a></h1>
+    <h1 class="logo me-auto me-lg-0"><a href="index">{{params["title"]}}</a></h1>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -21,11 +21,11 @@
     </nav><!-- .navbar -->
 
     <div class="social-icons">
-      <a href="https://www.linkedin.com/in/amartya-dey-24am/" class="linkedin"><img src="{{ url_for('static', filename = 'assets/icons/linkedin.png') }}" alt="LinkedIn"></a>
-      <a href="https://github.com/AmartyaDey24" class="github"><img src="{{ url_for('static', filename = 'assets/icons/github.png') }}" alt="GitHub"></a>
-      <a href="https://twitter.com/AmartyaDey" class="twitter"><img src="{{ url_for('static', filename = 'assets/icons/twitter.png') }}" alt="twitter"></a>
-      <a href="https://www.instagram.com/___amartya__/" class="instagram"><img src="{{ url_for('static', filename = 'assets/icons/instagram.png') }}" alt="Instagram"></a>
-      <a href="https://www.facebook.com/amartya.dey.96/" class="facebook"><img src="{{ url_for('static', filename = 'assets/icons/facebook.png') }}" alt="Facebook"></a>
+      <a href="{{params["linkedin_url"]}}" class="linkedin"><img src="{{ url_for('static', filename = 'assets/icons/linkedin.png') }}" alt="LinkedIn"></a>
+      <a href="{{params["github_url"]}}" class="github"><img src="{{ url_for('static', filename = 'assets/icons/github.png') }}" alt="GitHub"></a>
+      <a href="{{params["twitter_url"]}}" class="twitter"><img src="{{ url_for('static', filename = 'assets/icons/twitter.png') }}" alt="twitter"></a>
+      <a href="{{params["instagram_url"]}}" class="instagram"><img src="{{ url_for('static', filename = 'assets/icons/instagram.png') }}" alt="Instagram"></a>
+      <a href="{{params["facebook_url"]}}" class="facebook"><img src="{{ url_for('static', filename = 'assets/icons/facebook.png') }}" alt="Facebook"></a>
     </div>
 
   </div>
@@ -49,19 +49,19 @@
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>D/41, Amrabati, Sodepur, Kolkata - 700110, West Bengal, India</p>
+                <p>{{params["location"]}}</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>amartyadey24@gmail.com</p>
+                <p>{{params["email"]}}</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+91 8017848263 / 9123359755</p>
+                <p>{{params["phone"]}}</p>
               </div>
 
             </div>
