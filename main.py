@@ -1,12 +1,32 @@
 from flask import Flask, render_template, request
 from dates_data import Dates_data
 from flask_sqlalchemy import SQLAlchemy
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 
 #connecting to Xaamp Mysql through sqlalchemy
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:@localhost/portfolio_amartya"
 db = SQLAlchemy(app)
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 'amartyaportfolio@gmail.com'  # Replace with your Gmail email address
+app.config['MAIL_PASSWORD'] = 'lsqw vmcy frho ebch'  # Replace with your Gmail password
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+mail = Mail(app)
+
+
+def send_email(subject, message, sender_email):
+    msg = Message(subject=subject, sender=sender_email, recipients=['amartyadey929@gmail.com@gmail.com'])  # Replace with the recipient's email address
+    msg.body = message
+    mail.send(msg)
 
 #class contacts help to update the contacts_form table with relevalent data
 class Contacts(db.Model):
@@ -57,10 +77,11 @@ def contact():
         subject_post = request.form.get('subject')
         message_post = request.form.get('message')
 
-        entry = Contacts(name = name_post, email = email_post, subject = subject_post, message = message_post, datetime = Dates_data.get_submit_datetime)
+        entry = Contacts(name_post, email_post, subject_post, message_post, Dates_data.submit_date)
         db.session.add(entry)
         db.session.commit()
     
+        send_email(subject_post, message_post, email_post)
 
     return render_template('contact.html')
 

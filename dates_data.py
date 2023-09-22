@@ -20,5 +20,4 @@ class Dates_data:
 
         return int(age)
     
-    def get_submit_datetime():
-        return datetime.now()
+    submit_date = datetime.now()
