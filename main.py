@@ -86,4 +86,4 @@ def contact():
 
     return render_template('contact.html', params = params)
 
-app.run(debug=True)
+app.run(debug=True, host="0.0.0.0", port=5000)
