@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from dates_data import Dates_data
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
+from flask_migrate import Migrate
 from exp_data import Exp_data
 import json
 
@@ -23,6 +24,7 @@ app.config['MAIL_USE_SSL'] = False
 
 mail = Mail(app)
 
+migrate = Migrate(app, db)
 
 def send_email(subject, message, sender_email, name):
     msg = Message(subject= name + ' from portfolio - ' + subject, sender=sender_email, recipients=[params["recipients_email"]])
@@ -49,6 +51,9 @@ class Contacts(db.Model):
         self.message = message
         self.datetime = datetime
 
+# Create the table if it doesn't exist (or add columns)
+with app.app_context():
+    db.create_all()
 
 @app.route("/home")
 def home():
@@ -86,4 +91,6 @@ def contact():
 
     return render_template('contact.html', params = params)
 
-app.run(debug=True, host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    
+    app.run(debug=True, host="0.0.0.0", port=5000)
