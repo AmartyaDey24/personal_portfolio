@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from dates_data import Dates_data
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
+from exp_data import Exp_data
 import json
 
 with open('config.json', 'r') as c:
@@ -66,7 +67,7 @@ def resume():
 @app.route("/experiences")
 def experiences():
     exp_months = Dates_data.get_exp_months()
-    return render_template('experiences.html', params = params, exp_months = exp_months)
+    return render_template('experiences.html', params = params, exp_months = exp_months, exp_data = Exp_data.get_exp_data())
 
 @app.route("/contact", methods = ['GET', 'POST'])
 def contact():
