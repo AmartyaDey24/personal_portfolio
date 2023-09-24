@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect, url_for
 from dates_data import Dates_data
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
@@ -12,7 +12,7 @@ with open('config.json', 'r') as c:
 app = Flask(__name__)
 
 #connecting to Xaamp Mysql through sqlalchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = params["local_mysql_uri"]
+app.config["SQLALCHEMY_DATABASE_URI"] = params["prod_mysql_uri"]
 db = SQLAlchemy(app)
 
 app.config['MAIL_SERVER'] = params["mail_server"]
@@ -54,6 +54,10 @@ class Contacts(db.Model):
 # Create the table if it doesn't exist (or add columns)
 with app.app_context():
     db.create_all()
+
+@app.route("/")
+def root():
+    return redirect(url_for("home"))
 
 @app.route("/home")
 def home():

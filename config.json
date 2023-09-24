@@ -14,7 +14,7 @@
         "degree": "B.Tech in Computer Science and Engineering",
         "email": "amartyadey24@gmail.com",
         "local_mysql_uri": "mysql://root:@localhost/portfolio_amartya",
-        "prod_mysql_uri": "postgresql://amartya_portfolio_user:oQInERoMwpr2nDY2epxhVQKjSlLLNphy@dpg-ck7hec7sasqs73au6qfg-a.singapore-postgres.render.com/amartya_portfolio",
+        "prod_mysql_uri": "mysql://root:2014amariju@localhost/portfolio_amartya",
         "mail_server": "smtp.gmail.com",
         "mail_port": "587",
         "mail_username": "amartyaportfolio@gmail.com",
