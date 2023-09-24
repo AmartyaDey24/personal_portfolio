@@ -80,7 +80,11 @@
                 <ul class="ul-container">
                   <li><i class="bi bi-rounded-right"></i> <strong>Age:</strong> {{age}}</li>
                   <li><i class="bi bi-rounded-right"></i> <strong>Degree:</strong> {{params["degree"]}} </li>
-                  <li><i class="bi bi-rounded-right"></i> <strong>Email:</strong> {{params["email"]}} </li>
+                  <li>
+                    <i class="bi bi-rounded-right"></i>
+                    <strong>Email:</strong>
+                    <a href="mailto:{{params["email"]}}" target="_blank">{{params["email"]}}</a>
+                  </li>
                 </ul>
               </div>
             </div>
