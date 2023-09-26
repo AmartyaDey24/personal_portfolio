@@ -8,7 +8,7 @@ class Dates_data:
         current_date = datetime.today()
         current_month = current_date.month
         exp_months = 9
-        exp_months += current_month-9
+        exp_months += current_month-7
 
         return int(exp_months)
     
