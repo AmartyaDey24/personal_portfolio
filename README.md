@@ -50,7 +50,7 @@ To run this project locally, follow these steps:
 6. Start the Flask development server:
 
    ```bash
-   python main.py
+   python wsgi.py
    
 7. Open your web browser and visit http://localhost:5000 to view your portfolio locally.
 
