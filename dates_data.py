@@ -3,14 +3,23 @@ from datetime import datetime, date
 
 class Dates_data:
 
-    def get_exp_months ():
-        #defining experience months
+    def get_exp_months(start_date):
+        # Get the current date
         current_date = datetime.today()
-        current_month = current_date.month
-        exp_months = 9
-        exp_months += current_month-7
-
-        return int(exp_months)
+    
+        # Calculate the difference in years and months
+        diff_years = current_date.year - start_date.year
+        diff_months = current_date.month - start_date.month
+    
+        # Total experience in months
+        exp_months = diff_years * 12 + diff_months
+    
+        # Handle negative months by adjusting for years
+        if diff_months < 0:
+            exp_months -= 12
+            exp_months += current_date.month - start_date.month + 12
+    
+        return exp_months
     
     def get_age ():
         # automating age calculation

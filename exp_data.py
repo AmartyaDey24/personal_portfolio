@@ -6,6 +6,21 @@ class Exp_data:
     def get_exp_data():
         experiences = [
             {
+                "start_date": "November 2023",
+                "end_date": "present",
+                "company_name": "WeCredit",
+                "role": "Software Developer Engineer",
+                "logo_url": url_for('static', filename='assets/company_logo/wecredit.jpg'),
+                "image_height": "100px",
+                "image_weight": "100px",
+                "linkedin_url": "https://www.linkedin.com/company/we-credit",
+                "details": [
+                    "API Integration and Data Handling: Spearheaded seamless integration of various APIs, ensuring efficient data retrieval from the company’s database while optimizing performance and minimizing latency during API requests.",
+                    "Multi-API Communication: Orchestrated communication with multiple APIs, guaranteeing data consistency and integrity, and implemented error-handling mechanisms to reduce data transmission failures.",
+                    "Website Backend Development: Played a pivotal role in developing backend features for the company website, contributing to its functionality and user experience enhancements."
+                ],
+            },
+            {
                 "start_date": "March 2023",
                 "end_date": "September 2023",
                 "company_name": "Natwest Group",
@@ -16,7 +31,7 @@ class Exp_data:
                 "linkedin_url": "https://www.linkedin.com/company/natwest-group/",
                 "details": [
                     "Full-Stack Web Development: I gained hands-on experience in full-stack web development using Python Flask framework and SQLite database while working as a software engineering intern on the TAM portal project at Natwest Group.",
-                    "Feature Development and Testing: My responsibilities included developing new features, conducting comprehensive testing, and debugging code to ensure the functionality and reliability of the TAM portal project..",
+                    "Feature Development and Testing: My responsibilities included developing new features, conducting comprehensive testing, and debugging code to ensure the functionality and reliability of the TAM portal project.",
                     "Collaboration and Skill Enhancement: I had the opportunity to collaborate with experienced professionals in the field, which enabled me to deepen my technical skills, enhance my problem-solving abilities, and improve my communication and teamwork skills."
                 ],
             },
